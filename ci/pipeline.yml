@@ -2,7 +2,7 @@ resources:
 - name: flight-school
   type: git
   source:
-    uri: https://github.com/Young-china/flight-school
+    uri: git@github.com:Young-china/flight-school.git
     branch: master
 
 - name: version
@@ -10,7 +10,7 @@ resources:
   source:
     driver: git
     initial_version: 0.0.0
-    uri: https://github.com/Young-china/flight-school
+    uri: git@github.com:Young-china/flight-school.git
     branch: version
     file: version
 
