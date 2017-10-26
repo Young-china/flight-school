@@ -4,11 +4,26 @@ resources:
   source:
     uri: https://github.com/Young-china/flight-school
     branch: master
+
+- name: version
+  type: semver
+  source:
+    driver: git
+    initial_version: 0.0.0
+    uri: https://github.com/Young-china/flight-school
+    branch: version
+    file: version
+
 jobs:
-- name: test-app
+- name: build-rc
+  serial_groups: [version]
   plan:
   - get: flight-school
-  - task: tests
-    file: flight-school/build.yml
-    params:
-          private_key: ((my-product-github-private-key))
+    trigger: true
+  - get: version
+    params: {pre: rc}
+  - task: build-artifact
+    file: flight-school/ci/build-artifact.yml
+  - put: version
+    params: {file: version/number}
+
