@@ -50,3 +50,23 @@ jobs:
   - put: version
     params: {file: version/number}
 
+- name: patch
+  serial_groups: [version]
+  plan:
+  - get: version
+    passed: [shipit]
+    trigger: true
+  - put: version
+    params: {bump: patch, pre: rc}
+
+- name: major
+  serial_groups: [version]
+  plan:
+  - put: version
+    params: {bump: major, pre: rc}
+
+- name: minor
+  serial_groups: [version]
+  plan:
+  - put: version
+    params: {bump: minor, pre: rc}
