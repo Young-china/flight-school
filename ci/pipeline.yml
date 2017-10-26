@@ -4,6 +4,7 @@ resources:
   source:
     uri: git@github.com:Young-china/flight-school.git
     branch: master
+    private_key: ((ibm-github-private-key))
 
 - name: version
   type: semver
@@ -13,6 +14,7 @@ resources:
     uri: git@github.com:Young-china/flight-school.git
     branch: version
     file: version
+    private_key: ((ibm-github-private-key))
 
 jobs:
 - name: build-rc
