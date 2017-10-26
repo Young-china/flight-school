@@ -29,3 +29,24 @@ jobs:
   - put: version
     params: {file: version/number}
 
+- name: integration
+  serial: true
+  plan:
+  - get: flight-school
+    trigger: true
+    passed: [build-rc]
+  - task: integration
+    file: flight-school/ci/integration.yml
+
+- name: shipit
+  serial_groups: [version]
+  plan:
+  - get: flight-school
+    passed: [integration]
+  - get: version
+    params: {bump: final}
+  - task: promote-to-final
+    file: flight-school/ci/build-artifact.yml
+  - put: version
+    params: {file: version/number}
+
