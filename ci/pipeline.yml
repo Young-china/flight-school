@@ -57,16 +57,16 @@ jobs:
     passed: [shipit]
     trigger: true
   - put: version
-    params: {bump: patch, pre: rc}
+    params: {bump: patch}
 
 - name: major
   serial_groups: [version]
   plan:
   - put: version
-    params: {bump: major, pre: rc}
+    params: {bump: major}
 
 - name: minor
   serial_groups: [version]
   plan:
   - put: version
-    params: {bump: minor, pre: rc}
+    params: {bump: minor}
