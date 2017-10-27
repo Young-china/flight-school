@@ -8,6 +8,7 @@ image_resource:
 
 inputs:
 - name: flight-school
+- name: version
 
 run:
   path: ./flight-school/ci/test.sh
