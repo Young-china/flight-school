@@ -35,6 +35,7 @@ jobs:
   - get: flight-school
     trigger: true
     passed: [build-rc]
+  - get: version
   - task: integration
     file: flight-school/ci/integration.yml
 
