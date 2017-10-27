@@ -10,7 +10,7 @@ resources:
   type: semver
   source:
     driver: git
-    initial_version: 0.0.0
+    initial_version: 0.0.0-rc.1
     uri: git@github.com:Young-china/flight-school.git
     branch: version
     file: version
@@ -57,16 +57,16 @@ jobs:
     passed: [shipit]
     trigger: true
   - put: version
-    params: {bump: patch}
+    params: {bump: patch, pre: rc}
 
 - name: major
   serial_groups: [version]
   plan:
   - put: version
-    params: {bump: major}
+    params: {bump: major, pre: rc}
 
 - name: minor
   serial_groups: [version]
   plan:
   - put: version
-    params: {bump: minor}
+    params: {bump: minor, pre: rc}
